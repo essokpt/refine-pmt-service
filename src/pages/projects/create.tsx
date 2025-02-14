@@ -1,17 +1,24 @@
-import { AntdInferencer } from "@refinedev/inferencer/antd";
 import React from "react";
-import { Create, NumberField, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, Select, DatePicker, InputNumber } from "antd";
-import dayjs from "dayjs";
+import { Create,  useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select,   } from "antd";
+//import dayjs from "dayjs";
 import { IProject } from "./interface";
 import { IEmployee } from "../employees/interface";
+import { ICustomer } from "../customers/interface";
 
 export const ProjectCreate = () => {
-  const { formProps, saveButtonProps, query } = useForm<IProject>();
+  const { formProps, saveButtonProps,  } = useForm<IProject>();
   const { selectProps } = useSelect<IEmployee>({
     resource: "employee",
     optionLabel: (item) => `${item.firstName}`,
     optionValue: (item) => item.firstName
+   
+  });
+
+  const { selectProps:customerList } = useSelect<ICustomer>({
+    resource: "customer",
+    optionLabel: (item) => `${item.thaiName}`,
+    optionValue: (item) => item.thaiName
    
   });
 
@@ -49,7 +56,11 @@ export const ProjectCreate = () => {
             },
           ]}
         >
-          <Input />
+             <Select
+            placeholder="Select a customer"
+            style={{ width: 300 }}
+            {...customerList}
+          />
         </Form.Item>
         <Form.Item
           label="Description"

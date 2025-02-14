@@ -1,4 +1,4 @@
-import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -32,6 +32,7 @@ import { UserCreate, UserEdit, UserShow } from "./pages/users";
 import { EmployeeCreate, EmployeeEdit, EmployeeList, EmployeeShow } from "./pages/employees";
 import { ProjectCreate, ProjectEdit, ProjectList, ProjectShow } from "./pages/projects";
 import { FileManagerCreate, FileManagerEdit, FileManagerList, FileManagerShow } from "./pages/filemanagers";
+import { CustomersCreate, CustomerEdit, CustomersList, CustomersShow } from "./pages/customers";
 
 function App() {
   return (
@@ -70,6 +71,12 @@ function App() {
                   create: "/fileManager/create",
                   edit: "/fileManager/edit/:id",
                   show: "/fileManager/show/:id"
+                }, {
+                  name: "customer",
+                  list: "/customer",
+                  create: "/customer/create",
+                  edit: "/customer/edit/:id",
+                  show: "/customer/show/:id"
                 }]}
                 options={{
                   syncWithLocation: true,
@@ -123,6 +130,13 @@ function App() {
                       <Route path="create" element={<ProjectCreate />} />
                       <Route path="edit/:id" element={<ProjectEdit />} />
                       <Route path="show/:id" element={<ProjectShow />} />
+                    </Route>
+
+                    <Route path="/customer">
+                      <Route index element={<CustomersList />} />
+                      <Route path="create" element={<CustomersCreate />} />
+                      <Route path="edit/:id" element={<CustomerEdit />} />
+                      <Route path="show/:id" element={<CustomersShow />} />
                     </Route>
 
                     <Route path="/fileManager">

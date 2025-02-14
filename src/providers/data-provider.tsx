@@ -22,7 +22,7 @@ export const dataProvider: DataProvider = {
     if (response.status < 200 || response.status > 299) throw response;
 
     const data = await response.json();
-    console.log('get user', data);
+    console.log('get data', data);
     
     return {
       data,

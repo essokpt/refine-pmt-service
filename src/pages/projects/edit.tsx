@@ -1,13 +1,21 @@
 import React from "react";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { Form, Input, DatePicker, Select } from "antd";
-import dayjs from "dayjs";
+import { Form, Input,  Select } from "antd";
+//import dayjs from "dayjs";
 import { IEmployee } from "../employees/interface";
+import { ICustomer } from "../customers/interface";
 
 export const ProjectEdit = () => {
-  const { formProps, saveButtonProps, query } = useForm();
+  const { formProps, saveButtonProps } = useForm();
 
-  const projectData = query?.data?.data;
+  //const projectData = query?.data?.data;
+  const { selectProps: customerSelete  } =
+        useSelect<ICustomer>({
+            resource: "customer",
+            optionLabel: (item) => `${item.thaiName}`,
+            // optionValue: (item) => item.id
+        });
+   // const categories = categoriesResult?.data?.data;
 
   const { selectProps } = useSelect<IEmployee>({
     resource: "employee",
@@ -16,9 +24,17 @@ export const ProjectEdit = () => {
    
   });
 
+  // const handleOnFinish = (values) => {
+  //   onFinish({
+  //     fullName: `${values.name} ${values.surname}`,
+  //   });
+  //   console.log(values);
+    
+  // };
+
   return (
     <Edit saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form {...formProps} layout="vertical" >
         <Form.Item
           label="Project Number"
           name={["projectNumber"]}
@@ -43,14 +59,18 @@ export const ProjectEdit = () => {
         </Form.Item>
         <Form.Item
           label="Customer"
-          name={["customer"]}
+          name={["customerId"]}
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+           <Select
+            placeholder="Select a customer"
+            style={{ width: 300 }}
+            {...customerSelete}
+          />
         </Form.Item>
         <Form.Item
           label="Description"

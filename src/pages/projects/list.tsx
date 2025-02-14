@@ -6,7 +6,7 @@ import {
     ShowButton,
     useTable,
   } from "@refinedev/antd";
-  import { AntdInferencer } from "@refinedev/inferencer/antd";
+  //import { AntdInferencer } from "@refinedev/inferencer/antd";
   import { Space, Table } from "antd";
   
   export const ProjectList = () => {
@@ -22,7 +22,7 @@ import {
           <Table.Column dataIndex="projectName" title="Project Name" />
           <Table.Column dataIndex="description" title="Description" />
           <Table.Column dataIndex="contactNumber" title="Contact Number" />
-          <Table.Column dataIndex="customer" title="Customer" />  
+          <Table.Column dataIndex={["customer", "thaiName"]} title="Customer" />  
           <Table.Column dataIndex="projectManager" title="PM" />
           <Table.Column dataIndex="startDate" title="Start Date" />
           <Table.Column dataIndex="endDate" title="End Date" />
